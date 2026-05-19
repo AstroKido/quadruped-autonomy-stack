@@ -1,0 +1,108 @@
+<svg viewBox="0 0 860 540" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'Cascadia Code', 'Fira Mono', monospace">
+
+  <rect width="860" height="540" fill="#0d1117"/>
+
+  <text x="430" y="38" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="600" letter-spacing="1">quadruped-autonomy-stack — Module Architecture</text>
+
+  <!-- HARDWARE LAYER -->
+  <rect x="30" y="460" width="800" height="52" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="430" y="479" text-anchor="middle" fill="#8b949e" font-size="11" letter-spacing="1">HARDWARE LAYER</text>
+  <text x="430" y="499" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="500">Unitree Go2 Pro (rooted)  ·  lowcmd / lowstate @ 200 Hz  ·  Jetson Orin NX</text>
+
+  <text x="430" y="448" text-anchor="middle" fill="#8b949e" font-size="10" letter-spacing="1">Docker Compose  ·  ROS2 Humble  ·  single-command startup</text>
+
+  <!-- GoStride -->
+  <rect x="30" y="70" width="370" height="185" rx="8" fill="#161b22" stroke="#238636" stroke-width="1.5"/>
+  <rect x="30" y="70" width="370" height="36" rx="8" fill="#1a3a1a"/>
+  <rect x="30" y="92" width="370" height="14" fill="#1a3a1a"/>
+  <text x="215" y="90" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700" letter-spacing="0.5">GoStride</text>
+  <text x="215" y="106" text-anchor="middle" fill="#8b949e" font-size="10">State Estimation + Locomotion Control</text>
+  <text x="215" y="120" text-anchor="middle" fill="#6e7681" font-size="9">go2_control  ·  ACTIVE</text>
+  <line x1="50" y1="130" x2="380" y2="130" stroke="#21262d" stroke-width="1"/>
+  <text x="50" y="148" fill="#e6edf3" font-size="10.5">State estimator</text>
+  <text x="210" y="148" fill="#8b949e" font-size="10">200 Hz · self-built</text>
+  <text x="50" y="167" fill="#e6edf3" font-size="10.5">Wrapped MPC</text>
+  <text x="210" y="167" fill="#8b949e" font-size="10">OCS2 fork · &lt;10 ms</text>
+  <text x="50" y="186" fill="#e6edf3" font-size="10.5">Gait scheduler</text>
+  <text x="210" y="186" fill="#8b949e" font-size="10">trot / walk / crawl</text>
+  <text x="50" y="205" fill="#e6edf3" font-size="10.5">Online sysid</text>
+  <text x="210" y="205" fill="#8b949e" font-size="10">momentum observer</text>
+  <text x="50" y="224" fill="#e6edf3" font-size="10.5">Residual policy</text>
+  <text x="210" y="224" fill="#8b949e" font-size="10">sysid-conditioned · in dev</text>
+
+  <!-- GoSight -->
+  <rect x="460" y="70" width="370" height="185" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <rect x="460" y="70" width="370" height="36" rx="8" fill="#1e2228"/>
+  <rect x="460" y="92" width="370" height="14" fill="#1e2228"/>
+  <text x="645" y="90" text-anchor="middle" fill="#8b949e" font-size="12" font-weight="700" letter-spacing="0.5">GoSight</text>
+  <text x="645" y="106" text-anchor="middle" fill="#8b949e" font-size="10">Terrain Perception</text>
+  <text x="645" y="120" text-anchor="middle" fill="#6e7681" font-size="9">go2_perception  ·  PLANNED Q3 2026</text>
+  <line x1="480" y1="130" x2="810" y2="130" stroke="#21262d" stroke-width="1"/>
+  <text x="480" y="148" fill="#6e7681" font-size="10.5">Monocular depth estimation</text>
+  <text x="480" y="167" fill="#6e7681" font-size="10.5">Patch terrain classifier  (5 classes)</text>
+  <text x="480" y="186" fill="#6e7681" font-size="10.5">Costmap → GoStride gait scheduler</text>
+  <text x="480" y="205" fill="#6e7681" font-size="10.5">All inference onboard · no cloud</text>
+
+  <!-- GoTrack -->
+  <rect x="30" y="295" width="370" height="130" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <rect x="30" y="295" width="370" height="36" rx="8" fill="#1e2228"/>
+  <rect x="30" y="317" width="370" height="14" fill="#1e2228"/>
+  <text x="215" y="315" text-anchor="middle" fill="#8b949e" font-size="12" font-weight="700" letter-spacing="0.5">GoTrack</text>
+  <text x="215" y="331" text-anchor="middle" fill="#8b949e" font-size="10">Dynamic Object Tracking + Pursuit</text>
+  <text x="215" y="345" text-anchor="middle" fill="#6e7681" font-size="9">go2_pursuit  ·  PLANNED Q4 2026</text>
+  <line x1="50" y1="355" x2="380" y2="355" stroke="#21262d" stroke-width="1"/>
+  <text x="50" y="373" fill="#6e7681" font-size="10.5">Detection + multi-object tracking</text>
+  <text x="50" y="392" fill="#6e7681" font-size="10.5">Occlusion handling</text>
+  <text x="50" y="411" fill="#6e7681" font-size="10.5">Pursuit planner → GoStride MPC</text>
+
+  <!-- GoMission -->
+  <rect x="460" y="295" width="370" height="130" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <rect x="460" y="295" width="370" height="36" rx="8" fill="#1e2228"/>
+  <rect x="460" y="317" width="370" height="14" fill="#1e2228"/>
+  <text x="645" y="315" text-anchor="middle" fill="#8b949e" font-size="12" font-weight="700" letter-spacing="0.5">GoMission</text>
+  <text x="645" y="331" text-anchor="middle" fill="#8b949e" font-size="10">Mission Engine</text>
+  <text x="645" y="345" text-anchor="middle" fill="#6e7681" font-size="9">go2_mission  ·  PLANNED Q1 2027</text>
+  <line x1="480" y1="355" x2="810" y2="355" stroke="#21262d" stroke-width="1"/>
+  <text x="480" y="373" fill="#6e7681" font-size="10.5">BehaviorTree.CPP + Nav2</text>
+  <text x="480" y="392" fill="#6e7681" font-size="10.5">Anomaly detection</text>
+  <text x="480" y="411" fill="#6e7681" font-size="10.5">Foxglove + Grafana dashboard</text>
+
+  <!-- ARROWS -->
+  <defs>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3fb950" opacity="0.8"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#58a6ff" opacity="0.8"/>
+    </marker>
+    <marker id="arr-dim" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b949e" opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <line x1="400" y1="155" x2="458" y2="155" stroke="#58a6ff" stroke-width="1.5" opacity="0.8" marker-end="url(#arr-blue)"/>
+  <text x="429" y="148" text-anchor="middle" fill="#58a6ff" font-size="9" opacity="0.9">pose</text>
+
+  <line x1="458" y1="172" x2="400" y2="172" stroke="#3fb950" stroke-width="1.5" opacity="0.7" marker-end="url(#arr-green)"/>
+  <text x="429" y="186" text-anchor="middle" fill="#3fb950" font-size="9" opacity="0.8">costmap</text>
+
+  <line x1="215" y1="255" x2="215" y2="293" stroke="#8b949e" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 3" marker-end="url(#arr-dim)"/>
+  <line x1="645" y1="255" x2="645" y2="293" stroke="#8b949e" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 3" marker-end="url(#arr-dim)"/>
+  <line x1="400" y1="358" x2="458" y2="358" stroke="#8b949e" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 3" marker-end="url(#arr-dim)"/>
+
+  <line x1="210" y1="425" x2="210" y2="458" stroke="#58a6ff" stroke-width="1.5" opacity="0.7" marker-end="url(#arr-blue)"/>
+  <line x1="228" y1="458" x2="228" y2="425" stroke="#3fb950" stroke-width="1.5" opacity="0.6" marker-end="url(#arr-green)"/>
+  <text x="265" y="444" fill="#58a6ff" font-size="9" opacity="0.8">cmd</text>
+  <text x="175" y="444" fill="#3fb950" font-size="9" opacity="0.8">state</text>
+
+  <!-- Legend -->
+  <line x1="30" y1="525" x2="50" y2="525" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="56" y="529" fill="#8b949e" font-size="9">active data flow</text>
+  <line x1="170" y1="525" x2="190" y2="525" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text x="196" y="529" fill="#8b949e" font-size="9">planned interface</text>
+  <rect x="320" y="519" width="12" height="8" rx="2" fill="none" stroke="#238636" stroke-width="1.5"/>
+  <text x="338" y="529" fill="#8b949e" font-size="9">active module</text>
+  <rect x="450" y="519" width="12" height="8" rx="2" fill="none" stroke="#30363d" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text x="468" y="529" fill="#8b949e" font-size="9">planned module</text>
+
+</svg>
